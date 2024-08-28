@@ -1,0 +1,60 @@
+{% extends 'main/base.html' %}
+
+{% load static %}
+
+{% block title %}
+About Us
+{% endblock %}
+
+{% block link %}
+<link rel="stylesheet" href="{% static 'css/about.css' %}">
+{% endblock %}
+
+{% block body %}
+
+<div class="container">
+    <div class="about">
+        <div class="mission">
+            <div class="m">
+                <div class="m-head">
+                    <img src="{% static 'images/icons/announce.png' %}" alt="">
+                    <div class="text">Mission</div>
+                </div>
+                <div class="m-body">
+                    At SiUch Technologies, we’re all about helping businesses grow through innovative software, custom mobile apps, and strategic consulting. Whether it’s building tech solutions or crafting smart strategies, we’re dedicated to giving our clients exactly what they need to thrive and succeed in a fast-paced digital world.
+                </div>
+            </div>
+            <div class="m">
+                <div class="m-head">
+                    <img src="{% static 'images/icons/announce.png' %}" alt="">
+                    <div class="text">Vision</div>
+                </div>
+                <div class="m-body">
+                    Our vision is to be a go-to partner for businesses looking to innovate and grow. We want to be known for creating cutting-edge tech solutions and offering strategic guidance that really makes a difference. We’re here to push boundaries, evolve with the times, and help shape the future of business development and growth.
+                </div>
+            </div>
+        </div>
+        <div class="fs">
+            <div class="f">
+                <img src="{% static 'images/others/uch.JPG' %}" alt="">
+                <div class="text">
+                    <div class="name">Tanvir Saklain</div>
+                    <div class="desc">
+                        Hey, I’m Tanvir Saklain, Co-Founder and Director of SiUch Technologies. I’m all about generating ideas, converting them from theoritical to practical and supervising technical operations. I focus on making the requested product perfectly built as per need. Alongside my co-founder, Saiful Islam, I dare to say "We can do it!"
+                    </div>
+                </div>
+            </div>
+            <div class="f">
+                <img src="{% static 'images/others/saiful.jpg' %}" alt="">
+                <div class="text">
+                    <div class="name">সাইফুল ইসলাম</div>
+                    <div class="desc">
+                        Hey, I’m Saiful Islam, Co-Founder and Managing Director of SiUch Technologies. I’m all about blending business strategy with tech to help companies thrive. I focus on keeping things running smoothly here—whether that’s managing operations or making sure we’re delivering innovative software solutions to our clients. Alongside my co-founder, Tanvir Saklain, I’m excited to push the boundaries of what’s possible and help businesses succeed in a fast-moving digital world.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

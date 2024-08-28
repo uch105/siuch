@@ -1,0 +1,110 @@
+{% extends 'main/base.html' %}
+
+{% load static %}
+
+{% block title %}
+Welcome to SiUch Technologies
+{% endblock %}
+
+{% block link %}
+<link rel="stylesheet" href="{% static 'css/index.css' %}">
+{% endblock %}
+
+{% block body %}
+{% if message %}
+<div id="message">
+    <div class="message">{{ message }}</div>
+    <img src="{% static 'images/icons/cross.png' %}" alt="" onclick="Hide('message')">
+</div>
+{% endif %}
+<div class="landing">
+    <div class="container">
+        <div class="landing-container">
+            <div class="big-text">
+                We provide best tech solutions & system planning for your business
+            </div>
+            <div class="small-text">
+                We are a architect of nation, travellers of technological advancements and partners in your success. As a dynamic and forward thinking organization.
+            </div>
+            <div class="links">
+                <a href="#contact-us"><span>Start a project</span><span>&#x2197;</span></a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="landing2">
+    <div class="container">
+        <div class="title">Our Services</div>
+        <div class="services">
+            <div class="service">
+                <img src="{% static 'images/icons/webdev.png' %}" alt="">
+                <div class="title2">Web Development</div>
+                <div class="desc">We provide custom web solutions for your business eg. Employee Management Softwares, Business Websites (e-commerce, blogging etc)</div>
+            </div>
+            <div class="service">
+                <img src="{% static 'images/icons/apps.png' %}" alt="">
+                <div class="title2">Custom Applications</div>
+                <div class="desc">We can build any kind of applications you want. For example, Mobile Games, Productivity apps, Hybrid apps, Lifestyle apps, Web apps etc.</div>
+            </div>
+            <div class="service">
+                <img src="{% static 'images/icons/office.png' %}" alt="">
+                <div class="title2">Office Setup</div>
+                <div class="desc">Office network infrastructure building, tools management, eco-friendly waste management system, proper working environment installation etc.</div>
+            </div>
+            <div class="service">
+                <img src="{% static 'images/icons/business.png' %}" alt="">
+                <div class="title2">Business Strategy Design</div>
+                <div class="desc">We can help you to design your successful business strategy, SWOT analysisis, business consultancy and step-by-step guidelines.</div>
+            </div>
+            <div class="service">
+                <img src="{% static 'images/icons/product.png' %}" alt="">
+                <div class="title2">Product Development</div>
+                <div class="desc">Custom hardware products eg. custom robotic products, educational equipments, crafting products, clothing products etc.</div>
+            </div>
+            <div class="service">
+                <img src="{% static 'images/icons/portfolio.png' %}" alt="">
+                <div class="title2">Portfolio</div>
+                <div class="desc">You can easily create your portfolio website just by providing a domain (not necessary) and your detail informations.</div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="landing3">
+    <div class="container">
+        <div class="landing3-container">
+            <div class="texts">
+                <div class="big-text">
+                    We provide IT solutions & Services for any Startups or on-going businesses
+                </div>
+                <div class="small-text">
+                    We are a full functional team capable of giving any solutions related to your business. We offer websites for your business, employee management software for your office or any kind of solutions with our dynamic and forward-thinking team members.
+                </div>
+                <div class="stats">
+                    <div class="stat">
+                        <div class="stat1">3</div>
+                        <div class="stat2">Successful Projects</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat1">3</div>
+                        <div class="stat2">On-going Research Projects</div>
+                    </div>
+                </div>
+                <div style="margin-top: 20px;text-align: center;">
+                    <a href="{% url 'products' %}">See products    &#x2197;</a>
+                </div>
+            </div>
+            <div class="image">
+                <img src="{% static 'images/others/groupwork.jpg' %}" alt="">
+            </div>
+        </div>
+    </div>
+</div>
+<form action="{% url 'home' %}" method="POST" id="contact-us">
+    {% csrf_token %}
+    <div>Contact Us</div>
+    <input type="text" class="inputfield" name="name" placeholder="Your name" required>
+    <input type="email" class="inputfield" name="email" placeholder="Your e-mail/phone">
+    <textarea name="msg" id="" class="textinputfield" placeholder="Ask/Tell anything..."></textarea>
+    <input type="submit" value="Send &#x2197;" class="submit-btn">
+</form>
+{% endblock %}

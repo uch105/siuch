@@ -1,0 +1,20 @@
+from django.urls import path,include
+from . import views
+from . import maintainance
+from django.conf import settings
+from django.conf.urls.static import static
+
+maintainance_check = False
+
+if maintainance_check:
+    urlpatterns = [
+        path("", maintainance.home, name="home"),
+    ]+ static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
+
+else:
+    urlpatterns = [
+        path("", views.home, name="home"),
+        path("products/", views.products, name="products"),
+        path("R-and-D/", views.r_d, name="r&d"),
+        path("about-us/", views.about, name="about"),
+    ]+ static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)

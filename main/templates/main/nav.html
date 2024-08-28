@@ -1,0 +1,15 @@
+{% load static %}
+<nav>
+    <div class="navbar container">
+        <img src="{% static 'images/icons/siuchw.png' %}" alt="">
+        <div class="text">SiUch Technologies.</div>
+    </div>
+    <div class="navlinks container">
+        <ul>
+            <li><a href="{% url 'home' %}" {% if "/home/" in request.path %} class="active"{% endif %}>Home</a></li>
+            <li><a href="{% url 'products' %}" {% if "/products/" in request.path %} class="active"{% endif %}>Products</a></li>
+            <li><a href="{% url 'r&d' %}" {% if "/R-and-D/" in request.path %} class="active"{% endif %}>R & D</a></li>
+            <li><a href="{% url 'about' %}" {% if "/about-us/" in request.path %} class="active"{% endif %}>About Us</a></li>
+        </ul>
+    </div>
+</nav>

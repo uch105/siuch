@@ -1,0 +1,95 @@
+.about{
+    margin: 20px 0px;
+}
+.mission{
+    display: grid;
+    grid-template-columns: 400px 400px;
+    gap: 40px;
+    justify-content: center;
+    align-items: center;
+}
+.m{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    background-color: var(--light);
+    border-radius: 7px;
+    box-shadow: var(--dark-shadow);
+}
+.m-head{
+    display: flex;
+    gap: 30px;
+    justify-content: center;
+    align-items: center;
+}
+.m-head .text{
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--dark);
+}
+.m-body{
+    color: var(--dark);
+    font-size: 14px;
+    font-weight: 500;
+    text-align: center;
+}
+.fs{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin: 50px 0px;
+}
+.f{
+    display: flex;
+    gap: 40px;
+    justify-content: center;
+    align-items: flex-start;
+}
+.f img{
+    width: 150px;
+    height: auto;
+    border-radius: 30px 10px 30px 10px;
+}
+.f .text{
+    width: 600px;
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+}
+.name{
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--dark);
+}
+.desc{
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--dark);
+}
+@media screen and (max-width:900px){
+    .mission{
+        grid-template-columns: 300px 300px;
+    }
+    .f .text{
+        width: 500px;
+    }
+}
+@media screen and (max-width:600px){
+    .mission{
+        grid-template-columns: 300px;
+        gap: 20px;
+    }
+    .f{
+        flex-direction: column;
+        gap: 20px;
+        align-items: center;
+    }
+    .f .text{
+        width: 300px;
+        justify-content: center;
+        align-items: center;
+    }
+}

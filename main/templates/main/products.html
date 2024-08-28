@@ -1,0 +1,28 @@
+{% extends 'main/base.html' %}
+
+{% load static %}
+
+{% block title %}
+Products
+{% endblock %}
+
+{% block link %}
+<link rel="stylesheet" href="{% static 'css/products.css' %}">
+{% endblock %}
+
+{% block body %}
+<div class="container">
+    <div class="products">
+        <div class="product">
+            <img src="{% static 'images/others/ka.png' %}" alt="">
+            <a href="https://kamrulacademy.com" target="_blank">Kamrul Academy &#x2197;</a>
+            <div>A startup company , an Ed-Tech Platform</div>
+        </div>
+        <div class="product">
+            <img src="{% static 'images/others/mse.png' %}" alt="">
+            <a href="http://49.12.208.164/" target="_blank">Materials Science - RU &#x2197;</a>
+            <div>A community based paltform for Materials Engineer</div>
+        </div>
+    </div>
+</div>
+{% endblock %}
