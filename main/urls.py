@@ -17,4 +17,5 @@ else:
         path("products/", views.products, name="products"),
         path("R-and-D/", views.r_d, name="r&d"),
         path("about-us/", views.about, name="about"),
+        path("admin/inquiry/", views.admin_inquiry, name="admin-inquiry"),
     ]+ static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)

@@ -4,7 +4,7 @@
         <img src="{% static 'images/icons/siuchw.png' %}" alt="">
         <div class="text">SiUch Technologies.</div>
     </div>
-    <div class="navlinks container">
+    <div class="navlinks container" {% if "/admin/" in request.path %} style="display: none;" {% endif %}>
         <ul>
             <li><a href="{% url 'home' %}" {% if "/home/" in request.path %} class="active"{% endif %}>Home</a></li>
             <li><a href="{% url 'products' %}" {% if "/products/" in request.path %} class="active"{% endif %}>Products</a></li>

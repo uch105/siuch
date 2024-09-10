@@ -1,0 +1,41 @@
+{% extends 'main/admin.html' %}
+
+{% load static %}
+
+{% block title %}
+Admin - Inquiry
+{% endblock %}
+
+{% block link %}
+<link rel="stylesheet" href="{% static 'css/admin.css' %}">
+{% endblock %}
+
+{% block body %}
+
+<div class="container">
+    <div class="inquiry-table">
+        <h2>Inquiry Table</h2>
+        <div class="table-wrapper">
+            <table class="fl-table">
+                <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Phone/E-mail</th>
+                    <th>Message</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for inq in inqs %}
+                <tr>
+                    <td>{{ inq.name }}</td>
+                    <td>{{ inq.contact }}</td>
+                    <td>{{ inq.msg|slice:":35"|safe }}...</td>
+                </tr>
+                {% endfor %}
+                <tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

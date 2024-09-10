@@ -103,8 +103,8 @@ Welcome to SiUch Technologies
     {% csrf_token %}
     <div>Contact Us</div>
     <input type="text" class="inputfield" name="name" placeholder="Your name" required>
-    <input type="email" class="inputfield" name="email" placeholder="Your e-mail/phone">
-    <textarea name="msg" id="" class="textinputfield" placeholder="Ask/Tell anything..."></textarea>
+    <input type="email" class="inputfield" name="email" placeholder="Your e-mail/phone" required>
+    <textarea name="msg" id="" class="textinputfield" placeholder="Ask/Tell anything..." required></textarea>
     <input type="submit" value="Send &#x2197;" class="submit-btn">
 </form>
 {% endblock %}

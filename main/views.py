@@ -1,5 +1,9 @@
 from django.shortcuts import render,redirect
 from django.contrib.auth import login as auth_login
+from django.contrib.auth import authenticate,logout
+from django.contrib.auth.models import User
+from django.contrib.admin.views.decorators import staff_member_required
+from django.contrib.auth.decorators import login_required
 from requests import request
 from django.core.mail import send_mail
 from django.conf import settings
@@ -26,3 +30,11 @@ def r_d(request):
 
 def about(request):
     return render(request, "main/about.html")
+
+@staff_member_required
+def admin_inquiry(request):
+    inqs = Inquiry.objects.all().order_by("-id")
+    context={
+        "inqs":inqs,
+    }
+    return render(request,"main/admin-inquiry.html",context)
