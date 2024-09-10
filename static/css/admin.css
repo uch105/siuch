@@ -123,3 +123,8 @@ h2{
         text-align: center;
     }
 }
+
+/* -------- custom ----- */
+.hide{
+    display: none;
+}

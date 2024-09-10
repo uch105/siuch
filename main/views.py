@@ -13,7 +13,7 @@ import os,datetime,random,string,json,time
 
 def home(request):
     if request.method == "POST":
-        instance = Inquiry.objects.create(name=request.POST.get("name"),contact=request.POST.get("email"),msg=request.POST.get("msg"))
+        instance = AdminInquiry.objects.create(name=request.POST.get("name"),contact=request.POST.get("email"),msg=request.POST.get("msg"))
         instance.save()
         context ={
             "message":"Your message has been sent",
@@ -33,7 +33,7 @@ def about(request):
 
 @staff_member_required
 def admin_inquiry(request):
-    inqs = Inquiry.objects.all().order_by("-id")
+    inqs = AdminInquiry.objects.all().order_by("-id")
     context={
         "inqs":inqs,
     }

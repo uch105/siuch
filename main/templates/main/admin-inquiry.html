@@ -22,6 +22,7 @@ Admin - Inquiry
                     <th>Name</th>
                     <th>Phone/E-mail</th>
                     <th>Message</th>
+                    <th>Date-time</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -29,7 +30,9 @@ Admin - Inquiry
                 <tr>
                     <td>{{ inq.name }}</td>
                     <td>{{ inq.contact }}</td>
-                    <td>{{ inq.msg|slice:":35"|safe }}...</td>
+                    <td id="show-less-{{ inq.id }}" onclick="showFullText('{{ inq.id }}')">{{ inq.msg|slice:":35"|safe }}...</td>
+                    <td id="show-full-{{ inq.id }}" onclick="showLessText('{{ inq.id }}')" class="hide" style="max-width: 120px;height: auto;text-wrap: wrap;">{{ inq.msg|safe }}</td>
+                    <td>{{ inq.dt }}</td>
                 </tr>
                 {% endfor %}
                 <tbody>
