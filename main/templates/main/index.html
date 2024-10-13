@@ -8,6 +8,8 @@ Welcome to SiUch Technologies
 
 {% block link %}
 <link rel="stylesheet" href="{% static 'css/index.css' %}">
+<meta name="keywords" content="custom website, business planning, custom software, office setup, portfolio website,employee management software, siuch, siuch technologies, website builder, custom mobile app, mobile application, CV making, CV, business letter pad,letterpad, business card, branding,startup, start up">
+<meta name="description" content="We are a full functional team providing custom digital solutions like website building, employee management softwares, portfolio making, mobile apps, business strategy planning etc.">
 {% endblock %}
 
 {% block body %}
@@ -20,12 +22,12 @@ Welcome to SiUch Technologies
 <div class="landing">
     <div class="container">
         <div class="landing-container">
-            <div class="big-text">
+            <h1 class="big-text">
                 We provide best tech solutions & system planning for your business
-            </div>
-            <div class="small-text">
+            </h1>
+            <p class="small-text">
                 We are a architect of nation, travellers of technological advancements and partners in your success. As a dynamic and forward thinking organization.
-            </div>
+            </p>
             <div class="links">
                 <a href="#contact-us"><span>Start a project</span><span>&#x2197;</span></a>
             </div>
@@ -38,33 +40,33 @@ Welcome to SiUch Technologies
         <div class="services">
             <div class="service">
                 <img src="{% static 'images/icons/webdev.png' %}" alt="">
-                <div class="title2">Web Development</div>
-                <div class="desc">We provide custom web solutions for your business eg. Employee Management Softwares, Business Websites (e-commerce, blogging etc)</div>
+                <h3 class="title2">Web Development</h3>
+                <p class="desc">We provide custom web solutions for your business eg. Employee Management Softwares, Business Websites (e-commerce, blogging etc)</p>
             </div>
             <div class="service">
                 <img src="{% static 'images/icons/apps.png' %}" alt="">
-                <div class="title2">Custom Applications</div>
-                <div class="desc">We can build any kind of applications you want. For example, Mobile Games, Productivity apps, Hybrid apps, Lifestyle apps, Web apps etc.</div>
+                <h3 class="title2">Custom Applications</h3>
+                <p class="desc">We can build any kind of applications you want. For example, Mobile Games, Productivity apps, Hybrid apps, Lifestyle apps, Web apps etc.</p>
             </div>
             <div class="service">
                 <img src="{% static 'images/icons/office.png' %}" alt="">
-                <div class="title2">Office Setup</div>
-                <div class="desc">Office network infrastructure building, tools management, eco-friendly waste management system, proper working environment installation etc.</div>
+                <h3 class="title2">Office Setup</h3>
+                <p class="desc">Office network infrastructure building, tools management, eco-friendly waste management system, proper working environment installation etc.</p>
             </div>
             <div class="service">
                 <img src="{% static 'images/icons/business.png' %}" alt="">
-                <div class="title2">Business Strategy Design</div>
-                <div class="desc">We can help you to design your successful business strategy, SWOT analysisis, business consultancy and step-by-step guidelines.</div>
+                <h3 class="title2">Business Strategy Design</h3>
+                <p class="desc">We can help you to design your successful business strategy, SWOT analysisis, business consultancy and step-by-step guidelines.</p>
             </div>
             <div class="service">
                 <img src="{% static 'images/icons/product.png' %}" alt="">
-                <div class="title2">Product Development</div>
-                <div class="desc">Custom hardware products eg. custom robotic products, educational equipments, crafting products, clothing products etc.</div>
+                <h3 class="title2">Product Development</h3>
+                <p class="desc">Custom hardware products eg. custom robotic products, educational equipments, crafting products, clothing products etc.</p>
             </div>
             <div class="service">
                 <img src="{% static 'images/icons/portfolio.png' %}" alt="">
-                <div class="title2">Portfolio</div>
-                <div class="desc">You can easily create your portfolio website just by providing a domain (not necessary) and your detail informations.</div>
+                <h3 class="title2">Portfolio</h3>
+                <p class="desc">You can easily create your portfolio website just by providing a domain (not necessary) and your detail informations.</p>
             </div>
         </div>
     </div>
@@ -73,9 +75,9 @@ Welcome to SiUch Technologies
     <div class="container">
         <div class="landing3-container">
             <div class="texts">
-                <div class="big-text">
+                <h2 class="big-text">
                     We provide IT solutions & Services for any Startups or on-going businesses
-                </div>
+                </h2>
                 <div class="small-text">
                     We are a full functional team capable of giving any solutions related to your business. We offer websites for your business, employee management software for your office or any kind of solutions with our dynamic and forward-thinking team members.
                 </div>
@@ -103,7 +105,7 @@ Welcome to SiUch Technologies
     {% csrf_token %}
     <div>Contact Us</div>
     <input type="text" class="inputfield" name="name" placeholder="Your name" required>
-    <input type="email" class="inputfield" name="email" placeholder="Your e-mail/phone" required>
+    <input type="text" class="inputfield" name="contact" placeholder="Your e-mail/phone" required>
     <textarea name="msg" id="" class="textinputfield" placeholder="Ask/Tell anything..." required></textarea>
     <input type="submit" value="Send &#x2197;" class="submit-btn">
 </form>

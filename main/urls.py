@@ -18,4 +18,7 @@ else:
         path("R-and-D/", views.r_d, name="r&d"),
         path("about-us/", views.about, name="about"),
         path("admin/inquiry/", views.admin_inquiry, name="admin-inquiry"),
+        path("admin/logs/", views.site_log, name="site-log"),
+        path("admin/terms-and-conditions/", views.terms, name="terms"),
+        path("admin/privacy-policy/", views.privacy, name="privacy"),
     ]+ static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)

@@ -1,0 +1,24 @@
+{% extends 'main/admin.html' %}
+
+{% load static %}
+
+{% block title %}
+Admin - Inquiry
+{% endblock %}
+
+{% block link %}
+<link rel="stylesheet" href="{% static 'css/admin.css' %}">
+<meta http-equiv="refresh" content="5" />
+{% endblock %}
+
+{% block body %}
+
+<div class="container">
+    <p>
+        {% for log in logs %}
+        {{ log.ip_address }} -- {{ log.page }} -- {{ log.city }}-- {{ log.region }} -- {{ log.country }} -- {{ log.org }} -- {{ log.created_at }} <br>
+        {% endfor %}
+    </p>
+</div>
+
+{% endblock %}

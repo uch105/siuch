@@ -2,3 +2,4 @@ from django.contrib import admin
 from .models import *
 
 admin.site.register(AdminInquiry)
+admin.site.register(IPInfo)

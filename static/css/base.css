@@ -173,3 +173,10 @@ nav{
     width: 40px;
     height: auto;
 }
+.footer-container .terms{
+    margin: 0;
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+}

@@ -6,3 +6,6 @@ function showLessText(s){
     document.getElementById("show-full-"+s).classList.add('hide');
     document.getElementById("show-less-"+s).classList.remove('hide');
 }
+function Hide(s){
+    document.getElementById(s).style.display = "none";
+}

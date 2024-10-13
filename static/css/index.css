@@ -159,3 +159,14 @@ form div{
     font-size: 24px;
     font-weight: 700;
 }
+#message{
+    display: grid;
+    grid-template-columns: 250px 30px;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+}
+#message img{
+    width: 15px;
+    height: 15px;
+}
