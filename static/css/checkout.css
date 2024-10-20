@@ -1,0 +1,58 @@
+.hide{
+    display: none;
+}
+p{
+    margin: 0;
+}
+.message{
+    display: flex;
+    justify-content: center;
+}
+.message p{
+    text-align: center;
+    padding: 10px 30px;
+    width: 300px;
+    border: 0;
+    border-radius: 0;
+    color: black;
+    background-color: rgb(255, 149, 149);
+    font-size: 12px;
+}
+.message-green p{
+    color: black;
+    background-color: rgba(159, 255, 121, 0.801);
+}
+.checkout{
+    font-size: 12px;
+    margin: 20px 0px;
+    display: grid;
+    grid-template-columns: 700px;
+    gap: 10px;
+    justify-content: center;
+    align-items: flex-start;
+}
+.agree{
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+.checkout #proceed{
+    width: 150px;
+    padding: 10px 20px;
+    color: var(--light);
+    background-color: var(--dark);
+    border-radius: 7px;
+}
+@media screen and (max-width:800px){
+    .checkout{
+        grid-template-columns: 300px;
+    }
+}
+#pay-with-logo a{
+    display: flex;
+    justify-content: center;
+}
+#pay-with-logo img{
+    width: 75%;
+    height: auto;
+}

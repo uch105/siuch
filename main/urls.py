@@ -21,4 +21,11 @@ else:
         path("admin/logs/", views.site_log, name="site-log"),
         path("terms-and-conditions/", views.terms, name="terms"),
         path("privacy-policy/", views.privacy, name="privacy"),
+        path("checkout/", views.checkout, name="checkout"),
+        path("checkout/success/", views.checkoutsuccess, name="checkoutsuccess"),
+        path("checkout/fail/", views.checkoutfail, name="checkoutfail"),
+        path("checkout/cancel/", views.checkoutcancel, name="checkoutcancel"),
+        path("checkout/ipn_listener/", views.ipn_listener, name="ipn_listener"),
+        path("checkout/payment/<str:pk>/<str:pk2>/", views.create_a_payment, name="payment"),
+        path("api/check_tran_id/<str:pk>/", views.check_tran_id, name="check_tran_id"),
     ]+ static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)

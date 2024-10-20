@@ -11,6 +11,7 @@ from django.core.mail import send_mail
 from .automailsender import send_automail
 from django.conf import settings
 from .models import *
+from .payment import *
 from decouple import config
 import os,datetime,random,string,json,time
 
@@ -23,6 +24,12 @@ def get_client_ip(request):
     else:
         ip = request.META.get('REMOTE_ADDR')
     return ip
+
+def generate_id(s,n):
+    return str(str(s)+''.join(random.choices(string.ascii_uppercase+string.ascii_lowercase+string.digits,k=int(n))))
+
+def generate_doc_id(s):
+    return str(s).split("_")[0]
 
 def get_ip_info(ip_address):
     api_token = config("IPINFO_API_KEY")
@@ -51,6 +58,14 @@ def user_info(request,s):
         return True
     else:
         return False
+
+def get_customer_info(s):
+    response = requests.get("https://prescribemate.com/api/customer/"+str(s)+"/")
+    return response
+
+def add_subscription(pk,pk2,pk3):
+    response = requests.get("https://prescribemate.com/api/add_subscription/"+str(pk)+"/"+str(pk2)+"/"+str(pk3)+"/")
+    return response["status"]
 
 def home(request):
     #n = user_info(request,"home")
@@ -86,6 +101,90 @@ def terms(request):
 def privacy(request):
     #n = user_info(request,"privacy")
     return render(request, "main/privacy.html")
+
+def checkout(request):
+    try:
+        try:
+            product = Product.objects.get(pid=request.GET.get("pid"))
+            product.amount = request.GET.get("amount")
+            product.save()
+            context = {
+                'product': product,
+            }
+            return render(request,'main/checkout.html',context)
+        except:
+            p = Product.objects.create(pid=request.GET.get("pid"),amount=request.GET.get("amount"))
+            product = Product.objects.get(pid=request.GET.get("pid"))
+            context = {
+                'product': product,
+            }
+            return render(request,'main/checkout.html',context)
+    except:
+        context = {
+            "message": "Invalid url",
+        }
+        return render(request,'main/checkout.html',context)
+
+def create_a_payment(request,pk,pk2):
+    tran_id = generate_id(pk+"_","8")
+    amount = pk2
+    customer = get_customer_info(pk)
+    if customer["name"] == "N/A":
+        context = {
+            'message': "Unsafe url. Please contact customer care!",
+        }
+        return render(request,'main/checkoutfail.html',context)
+    else:
+        payment_url,sessionkey = create_get_session(tran_id=tran_id,amount=amount,name=customer["name"],email=customer["email"],phone=customer["phone"])
+        product = Product.objects.get(pid=pk)
+        product.sessionkey = sessionkey
+        product.tran_id = tran_id
+        product.save()
+        return redirect(payment_url)
+
+def ipn_listener(request):
+    if request.method == "POST":
+        status = request.POST.get("status")
+        if status == "VALID":
+            tran_id = request.POST.get("tran_id")
+            val_id = request.POST.get("val_id")
+            product = Product.objects.get(pid=generate_doc_id(tran_id))
+            product.val_id = val_id
+            product.tran_id = tran_id
+            params ={
+                'store_id': config("STORE_ID"),
+                'store_pass': config("STORE_PASS"),
+                'val_id':val_id,
+            }
+            r = requests.get(url=config('SANDBOX_API_ENDPOINT'),params=params)
+            if r['status'] == "VALID" or "VALIDATED":
+                product.paid_status = True
+                add_subscription(product.pid,product.amount,tran_id)
+                earning = Earning.objects.get(name="Doctors")
+                earning.total_amount += int(r["store_amount"])
+                product.save()
+
+def checkoutsuccess(request):
+    return render(request,'main/checkoutsuccess.html')
+
+def checkoutfail(request):
+    context = {
+        'message': "",
+    }
+    return render(request,'main/checkoutfail.html',context)
+
+def checkoutcancel(request):
+    context = {
+        'message': "",
+    }
+    return render(request,'main/checkoutcancel.html',context)
+
+def check_tran_id(request,pk):
+    product = Product.objects.filter(tran_id=pk)
+    if len(product) == 0:
+        return JsonResponse({'status':True,})
+    else:
+        return JsonResponse({'status':False,})
 
 @staff_member_required
 def admin_inquiry(request):

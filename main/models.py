@@ -20,3 +20,22 @@ class IPInfo(models.Model):
 
     def __str__(self):
         return self.ip_address
+
+class Product(models.Model):
+    pid = models.CharField(max_length=255,primary_key=True)
+    amount = models.CharField(max_length=100,default="100")
+    val_id = models.CharField(max_length=100,default="test")
+    tran_id = models.CharField(max_length=100,default="test")
+    sessionkey = models.CharField(max_length=100,default="test")
+    paid_status = models.BooleanField(default=False)
+    paid_date = models.DateField(auto_now_add=True)
+
+    def __str__(self):
+        return self.pid
+
+class Earning(models.Model):
+    name = models.CharField(max_length=100,primary_key=True)
+    total_amount = models.DecimalField(max_digits=12, decimal_places=2, default=0.00)
+
+    def __str__(self):
+        return f"{self.name} - {self.total_amount}"

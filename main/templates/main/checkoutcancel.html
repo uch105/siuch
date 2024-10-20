@@ -1,0 +1,25 @@
+{% extends 'main/base.html' %}
+
+{% load static %}
+
+{% block title %}
+Canceled!
+{% endblock %}
+
+{% block link %}
+<link rel="stylesheet" href="{% static 'css/checkout.css' %}">
+<script src="{% static 'js/checkout.js' %}" type="text/javascript"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+{% endblock %}
+
+{% block body %}
+<div class="container">
+
+    <div class="message">
+        <p>
+            Payment canceled. For any help, call us at +8801841105134 <br>
+            {{ message }}
+        </p>
+    </div>
+
+{% endblock %}
