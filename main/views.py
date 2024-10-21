@@ -5,6 +5,7 @@ from django.contrib.auth import authenticate,logout
 from django.contrib.auth.models import User
 from django.contrib.admin.views.decorators import staff_member_required
 from django.contrib.auth.decorators import login_required
+from django.views.decorators.csrf import csrf_exempt
 from requests import request
 import requests
 from django.core.mail import send_mail
@@ -164,15 +165,18 @@ def ipn_listener(request):
                 earning.total_amount += int(r["store_amount"])
                 product.save()
 
+@csrf_exempt
 def checkoutsuccess(request):
     return render(request,'main/checkoutsuccess.html')
 
+@csrf_exempt
 def checkoutfail(request):
     context = {
         'message': "",
     }
     return render(request,'main/checkoutfail.html',context)
 
+@csrf_exempt
 def checkoutcancel(request):
     context = {
         'message': "",
