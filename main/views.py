@@ -186,9 +186,9 @@ def checkoutcancel(request):
 def check_tran_id(request,pk):
     product = Product.objects.filter(tran_id=pk)
     if len(product) == 0:
-        return JsonResponse({'status':True,})
+        return JsonResponse({'status':'False',})
     else:
-        return JsonResponse({'status':False,})
+        return JsonResponse({'status':'True',})
 
 @staff_member_required
 def admin_inquiry(request):
