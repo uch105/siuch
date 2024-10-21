@@ -135,7 +135,7 @@ def create_a_payment(request,pk,pk2):
         }
         return render(request,'main/checkoutfail.html',context)
     else:
-        payment_url,sessionkey = create_get_session(tran_id=tran_id,amount=amount,name=customer["name"],email=customer()["email"],phone=customer["phone"])
+        payment_url,sessionkey = create_get_session(tran_id=tran_id,amount=amount,name=customer["name"],email=customer["email"],phone=customer["phone"])
         product = Product.objects.get(pid=pk)
         product.sessionkey = sessionkey
         product.tran_id = tran_id
