@@ -61,11 +61,11 @@ def user_info(request,s):
 
 def get_customer_info(s):
     response = requests.get("https://prescribemate.com/api/customer/"+str(s)+"/")
-    return response
+    return response.json()
 
 def add_subscription(pk,pk2,pk3):
     response = requests.get("https://prescribemate.com/api/add_subscription/"+str(pk)+"/"+str(pk2)+"/"+str(pk3)+"/")
-    return response["status"]
+    return response.json()["status"]
 
 def home(request):
     #n = user_info(request,"home")
@@ -129,13 +129,13 @@ def create_a_payment(request,pk,pk2):
     tran_id = generate_id(pk+"_","8")
     amount = pk2
     customer = get_customer_info(pk)
-    if customer.json()["name"] == "N/A":
+    if customer["name"] == "N/A":
         context = {
             'message': "Unsafe url. Please contact customer care!",
         }
         return render(request,'main/checkoutfail.html',context)
     else:
-        payment_url,sessionkey = create_get_session(tran_id=tran_id,amount=amount,name=customer["name"],email=customer["email"],phone=customer["phone"])
+        payment_url,sessionkey = create_get_session(tran_id=tran_id,amount=amount,name=customer["name"],email=customer()["email"],phone=customer["phone"])
         product = Product.objects.get(pid=pk)
         product.sessionkey = sessionkey
         product.tran_id = tran_id
@@ -157,7 +157,7 @@ def ipn_listener(request):
                 'val_id':val_id,
             }
             r = requests.get(url=config('SANDBOX_API_ENDPOINT'),params=params)
-            if r['status'] == "VALID" or "VALIDATED":
+            if r.json()['status'] == "VALID" or "VALIDATED":
                 product.paid_status = True
                 add_subscription(product.pid,product.amount,tran_id)
                 earning = Earning.objects.get(name="Doctors")
