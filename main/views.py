@@ -158,7 +158,7 @@ def ipn_listener(request):
                 'val_id':val_id,
             }
             r = requests.get(url=config('SANDBOX_API_ENDPOINT'),params=params)
-            if r.json()['status'] == "VALID" or "VALIDATED":
+            if r.json()['status'] == "VALID":
                 product.paid_status = True
                 add_subscription(product.pid,product.amount,tran_id)
                 earning = Earning.objects.get(name="Doctors")
