@@ -143,6 +143,7 @@ def create_a_payment(request,pk,pk2):
         product.save()
         return redirect(payment_url)
 
+@csrf_exempt
 def ipn_listener(request):
     if request.method == "POST":
         status = request.POST.get("status")
