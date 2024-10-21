@@ -17,6 +17,7 @@ from decouple import config
 import os,datetime,random,string,json,time
 
 
+ALLOWED_IPS = ['103.26.139.87','103.26.139.81','103.26.139.148']
 
 def get_client_ip(request):
     x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
@@ -144,12 +145,48 @@ def create_a_payment(request,pk,pk2):
         return redirect(payment_url)
 
 @csrf_exempt
+def process_headless(request):
+    # Get the IP address of the incoming request
+    client_ip = get_client_ip(request)
+
+    if request.method == 'POST':
+        # Check if the request is from a whitelisted IP address
+        if client_ip in ALLOWED_IPS:
+            # Allow headless requests (missing headers)
+            content_type = request.headers.get('Content-Type', '')
+
+            if not content_type:
+                content_type = 'application/json'  # Default to JSON if missing
+
+            try:
+                if content_type == 'application/json':
+                    # Parse JSON data from the request body
+                    data = json.loads(request.body)
+                else:
+                    # Parse form-data if content type is something else
+                    data = request.POST
+
+                # Handle the payment logic here
+                status = data.get('status')
+                tran_id = data.get('tran_id')
+                val_id = data.get('val_id')
+
+                return [status,tran_id,val_id]
+
+            except Exception as e:
+                return JsonResponse({'status': 'error', 'message': str(e)}, status=500)
+        else:
+            return JsonResponse({'status': 'error', 'message': 'Unauthorized IP'}, status=403)
+
+    return JsonResponse({'status': 'invalid request'}, status=400)
+
+@csrf_exempt
 def ipn_listener(request):
     if request.method == "POST":
-        status = request.POST.get("status")
-        if status == "VALID":
-            tran_id = request.POST.get("tran_id")
-            val_id = request.POST.get("val_id")
+        response = process_headless(request)
+        if response[0] == "VALID":
+            tran_id = response[1]
+            val_id = response[2]
             product = Product.objects.get(pid=generate_doc_id(tran_id))
             product.val_id = val_id
             product.tran_id = tran_id
