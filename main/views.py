@@ -162,7 +162,7 @@ def ipn_listener(request):
                 product.paid_status = True
                 add_subscription(product.pid,product.amount,tran_id)
                 earning = Earning.objects.get(name="Doctors")
-                earning.total_amount += int(r["store_amount"])
+                earning.total_amount += int(r.json()["store_amount"])
                 product.save()
 
 @csrf_exempt
