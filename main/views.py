@@ -129,7 +129,7 @@ def create_a_payment(request,pk,pk2):
     tran_id = generate_id(pk+"_","8")
     amount = pk2
     customer = get_customer_info(pk)
-    if customer["name"] == "N/A":
+    if customer.json()["name"] == "N/A":
         context = {
             'message': "Unsafe url. Please contact customer care!",
         }
