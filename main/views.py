@@ -1,5 +1,6 @@
 from django.shortcuts import render,redirect
 from django.http import JsonResponse
+from django.contrib import messages
 from django.contrib.auth import login as auth_login
 from django.contrib.auth import authenticate,logout
 from django.contrib.auth.models import User
@@ -78,9 +79,11 @@ def home(request):
             subject = "Auto-response(noreply)"
             body= "We have received your inquiry. Thank you for your interest. Our response team will contact with you shortly."
             send_automail(to_email=request.POST.get("contact"),subject=subject,body=body)
-            return redirect("home",{"message":"Your message has been sent",})
+            messages.success(request,"We have got your inquiry. Check email (also spam folder)")
+            return redirect("home")
         else:
-            return redirect("home",{"message":"Thank you for yur interest. Response team will contact with you shortly",})
+            messages.success(request,"We have got your inquiry. We will contact through whatsapp.")
+            return redirect("home")
     context = {}
     return render(request, "main/index.html",context)
 

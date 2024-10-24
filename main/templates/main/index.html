@@ -13,11 +13,10 @@ Welcome to SiUch Technologies
 {% endblock %}
 
 {% block body %}
-{% if message %}
-<div id="message">
-    <div class="message">{{ message }}</div>
-    <img src="{% static 'images/icons/cross.png' %}" alt="" onclick="Hide('message')">
-</div>
+{% if messages %}
+    {% for message in messages %}
+    <script>alert("{{ message }}");</script>
+    {% endfor %}
 {% endif %}
 <div class="landing">
     <div class="container">
