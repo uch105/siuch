@@ -11,7 +11,7 @@ def create_get_session(tran_id,pid,amount,name,email,phone):
     post_body['total_amount'] = amount
     post_body['currency'] = "BDT"
     post_body['tran_id'] = tran_id
-    post_body['success_url'] = config("SUCCESS_URL")+f"?pid={pid}&amount={amount}"
+    post_body['success_url'] = config("SUCCESS_URL")+f"?pid={pid}&amount={amount}&tran_id={tran_id}"
     post_body['fail_url'] = config("FAIL_URL")
     post_body['cancel_url'] = config("CANCEL_URL")
     post_body['emi_option'] = 0

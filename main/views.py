@@ -206,7 +206,7 @@ def ipn_listener(request):
                 earning = Earning.objects.get(name="Doctors")
                 earning.total_amount += int(r.json()["store_amount"])
                 product.save()
-            #return HttpResponse("<h1>Accepted</h1>",status_code=204)
+            return HttpResponse("<h1>Accepted</h1>",status_code=204)
 
 @csrf_exempt
 def checkoutsuccess(request):
