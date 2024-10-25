@@ -3,7 +3,7 @@ from decouple import config
 import requests
 
 
-def create_get_session(tran_id,amount,name,email,phone):
+def create_get_session(tran_id,pid,amount,name,email,phone):
 
     settings = { 'store_id': config('STORE_ID'), 'store_pass': config('STORE_PASS'), 'issandbox': True }
     sslcz = SSLCOMMERZ(settings)
@@ -11,7 +11,7 @@ def create_get_session(tran_id,amount,name,email,phone):
     post_body['total_amount'] = amount
     post_body['currency'] = "BDT"
     post_body['tran_id'] = tran_id
-    post_body['success_url'] = config("SUCCESS_URL")
+    post_body['success_url'] = config("SUCCESS_URL")+f"?pid={pid}&amount={amount}"
     post_body['fail_url'] = config("FAIL_URL")
     post_body['cancel_url'] = config("CANCEL_URL")
     post_body['emi_option'] = 0
@@ -77,14 +77,16 @@ def validate_with_ipn():
 def validate():
     url = "https://sandbox.sslcommerz.com/validator/api/validationserverAPI.php"
     params = {
-        'store_id':"jsjsjsjs",
-        'store_pass':"ojsjajoajksdh",
-        'val_id': "jhdhsjhdjhdskishak",
+        'store_id':"siuch670cc8cd3e6a9",
+        'store_pass':"siuch670cc8cd3e6a9@ssl",
+        'val_id': "test",
     }
     r = requests.get(url=url,params=params)
-    print(r)
+    print(r.json()["status"])
 
 def get_doctor_info(s):
     response = requests.get("http://198.168.1.114:9000/api/doctor/"+str(s)+"/")
     return response
 #get_doctor_info("mbbs10500")
+
+validate()

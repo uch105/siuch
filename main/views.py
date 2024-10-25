@@ -140,13 +140,14 @@ def create_a_payment(request,pk,pk2):
         }
         return render(request,'main/checkoutfail.html',context)
     else:
-        payment_url,sessionkey = create_get_session(tran_id=tran_id,amount=amount,name=customer["name"],email=customer["email"],phone=customer["phone"])
+        payment_url,sessionkey = create_get_session(tran_id=tran_id,pid=pk,amount=amount,name=customer["name"],email=customer["email"],phone=customer["phone"])
         product = Product.objects.get(pid=pk)
         product.sessionkey = sessionkey
         product.tran_id = tran_id
         product.save()
         return redirect(payment_url)
 
+'''
 @csrf_exempt
 def process_headless(request):
     # Get the IP address of the incoming request
@@ -182,14 +183,33 @@ def process_headless(request):
             return JsonResponse({'status': 'error', 'message': 'Unauthorized IP'}, status=403)
 
     return JsonResponse({'status': 'invalid request'}, status=400)
-
+'''
+    
 @csrf_exempt
 def ipn_listener(request):
     if request.method == "POST":
-        response = process_headless(request)
-        if response[0] == "VALID":
-            tran_id = response[1]
-            val_id = response[2]
+        if request.POST.get("status") == "VALID":
+            tran_id = request.POST.get("tran_id")
+            val_id = request.POST.get("val_id")
+            product = Product.objects.get(pid=generate_doc_id(tran_id))
+            product.val_id = val_id
+            product.tran_id = tran_id
+            params ={
+                'store_id': config("STORE_ID"),
+                'store_pass': config("STORE_PASS"),
+                'val_id':val_id,
+            }
+            r = requests.get(url=config('SANDBOX_API_ENDPOINT'),params=params)
+            if r.json()['status'] == "VALID":
+                product.paid_status = True
+                add_subscription(product.pid,product.amount,tran_id)
+                earning = Earning.objects.get(name="Doctors")
+                earning.total_amount += int(r.json()["store_amount"])
+                product.save()
+    elif request.method == "post":
+        if request.post.get("status") == "VALID":
+            tran_id = request.post.get("tran_id")
+            val_id = request.post.get("val_id")
             product = Product.objects.get(pid=generate_doc_id(tran_id))
             product.val_id = val_id
             product.tran_id = tran_id
@@ -208,6 +228,7 @@ def ipn_listener(request):
 
 @csrf_exempt
 def checkoutsuccess(request):
+    product = Product.objects.get(pid=request.GET.get("pid"))
     return render(request,'main/checkoutsuccess.html')
 
 @csrf_exempt
