@@ -214,6 +214,7 @@ def checkoutsuccess(request):
     product = Product.objects.get(pid=request.GET.get("pid"))
     if request.GET.get("tran_id") == product.tran_id:
         product.paid_status = True
+        product.save()
         response = add_subscription(product.pid,product.amount,product.tran_id)
         if response == "Success":
             product.tran_id = product.pid+"-siuch-reset"
