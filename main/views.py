@@ -207,26 +207,6 @@ def ipn_listener(request):
                 earning.total_amount += int(r.json()["store_amount"])
                 product.save()
             return HttpResponse("<h1>Accepted</h1>",status_code=204)
-    elif request.method == "post":
-        if request.post.get("status") == "VALID":
-            tran_id = request.post.get("tran_id")
-            val_id = request.post.get("val_id")
-            product = Product.objects.get(pid=generate_doc_id(tran_id))
-            product.val_id = val_id
-            product.tran_id = tran_id
-            params ={
-                'store_id': config("STORE_ID"),
-                'store_pass': config("STORE_PASS"),
-                'val_id':val_id,
-            }
-            r = requests.get(url=config('SANDBOX_API_ENDPOINT'),params=params)
-            if r.json()['status'] == "VALID":
-                product.paid_status = True
-                add_subscription(product.pid,product.amount,tran_id)
-                earning = Earning.objects.get(name="Doctors")
-                earning.total_amount += int(r.json()["store_amount"])
-                product.save()
-            return HttpResponse("<h1>Accepted</h1>",status_code=204)
 
 @csrf_exempt
 def checkoutsuccess(request):
