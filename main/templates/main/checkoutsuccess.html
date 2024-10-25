@@ -30,7 +30,7 @@ Success!
     const countdownElement = document.getElementById('countdown');
     const countdownTimer = setInterval(() => {
         timeLeft--;
-        countdownElement.textContent = timeLeft;
+        countdownElement.innerText = timeLeft;
 
         if (timeLeft <= 0) {
             clearInterval(countdownTimer);
