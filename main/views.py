@@ -208,10 +208,23 @@ def ipn_listener(request):
                 product.save()
             return HttpResponse("<h1>Accepted</h1>",status_code=204)
 
+
 @csrf_exempt
 def checkoutsuccess(request):
     product = Product.objects.get(pid=request.GET.get("pid"))
-    return render(request,'main/checkoutsuccess.html')
+    if request.GET.get("tran_id") == product.tran_id:
+        product.paid_status = True
+        response = add_subscription(product.pid,product.amount,product.tran_id)
+        if response == "Success":
+            product.tran_id = product.pid+"-siuch-reset"
+            product.paid_status = False
+            product.save()
+            return render(request,'main/checkoutsuccess.html')
+        else:
+            context = {
+                'message': 'Subscription adding failed. Contact admin soon!',
+            }
+            return render(request,'main/checkoutsuccess.html',context)
 
 @csrf_exempt
 def checkoutfail(request):
@@ -232,7 +245,10 @@ def check_tran_id(request,pk):
     if len(product) == 0:
         return JsonResponse({'status':'False',})
     else:
-        return JsonResponse({'status':'True',})
+        if product[0].paid_status:
+            return JsonResponse({'status':'True',})
+        else:
+            return JsonResponse({'status':'False',})
 
 @staff_member_required
 def admin_inquiry(request):
