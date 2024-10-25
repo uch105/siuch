@@ -10,22 +10,6 @@ Success!
 <link rel="stylesheet" href="{% static 'css/checkout.css' %}">
 <script src="{% static 'js/checkout.js' %}" type="text/javascript"></script>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-<script>
-    let timeLeft = 10;
-
-    // Update the countdown every 1 second
-    const countdownElement = document.getElementById('countdown');
-    const countdownTimer = setInterval(() => {
-        timeLeft--;
-        countdownElement.textContent = timeLeft;
-
-        // When the countdown reaches 0, clear the timer and redirect
-        if (timeLeft <= 0) {
-            clearInterval(countdownTimer);
-            window.location.href = "https://prescribemate/dashboard/settings/notification/";  // Change to the desired URL
-        }
-    }, 1000);
-</script>
 {% endblock %}
 
 {% block body %}
@@ -40,4 +24,18 @@ Success!
         </p>
     </div>
 </div>
+<script>
+    let timeLeft = 10;
+
+    const countdownElement = document.getElementById('countdown');
+    const countdownTimer = setInterval(() => {
+        timeLeft--;
+        countdownElement.textContent = timeLeft;
+
+        if (timeLeft <= 0) {
+            clearInterval(countdownTimer);
+            window.location.href = "https://prescribemate.com/dashboard/settings/notification/";
+        }
+    }, 1000);
+</script>
 {% endblock %}
