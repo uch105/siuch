@@ -89,4 +89,14 @@ def get_doctor_info(s):
     return response
 #get_doctor_info("mbbs10500")
 
-validate()
+def checkpoint():
+    url = 'https://siuchtechnologies.com/checkout/ipn_listener/'
+    myobj = {'tran_id': 'somevalue','val_id':'val_id','status':'VALID',}
+
+    x = requests.post(url, json = myobj)
+
+    with open('test.txt','w') as file:
+        for line in x.text:
+            file.write(line)
+
+checkpoint()

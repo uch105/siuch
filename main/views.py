@@ -1,4 +1,4 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render,redirect,HttpResponse
 from django.http import JsonResponse
 from django.contrib import messages
 from django.contrib.auth import login as auth_login
@@ -206,6 +206,7 @@ def ipn_listener(request):
                 earning = Earning.objects.get(name="Doctors")
                 earning.total_amount += int(r.json()["store_amount"])
                 product.save()
+            return HttpResponse("<h1>Accepted</h1>",status_code=204)
     elif request.method == "post":
         if request.post.get("status") == "VALID":
             tran_id = request.post.get("tran_id")
@@ -225,6 +226,7 @@ def ipn_listener(request):
                 earning = Earning.objects.get(name="Doctors")
                 earning.total_amount += int(r.json()["store_amount"])
                 product.save()
+            return HttpResponse("<h1>Accepted</h1>",status_code=204)
 
 @csrf_exempt
 def checkoutsuccess(request):
