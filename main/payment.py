@@ -88,15 +88,3 @@ def get_doctor_info(s):
     response = requests.get("http://198.168.1.114:9000/api/doctor/"+str(s)+"/")
     return response
 #get_doctor_info("mbbs10500")
-
-def checkpoint():
-    url = 'https://siuchtechnologies.com/checkout/ipn_listener/'
-    myobj = {'tran_id': 'somevalue','val_id':'val_id','status':'VALID',}
-
-    x = requests.post(url, json = myobj)
-
-    with open('test.txt','w') as file:
-        for line in x.text:
-            file.write(line)
-
-checkpoint()
