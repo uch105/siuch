@@ -1,10 +1,11 @@
 import smtplib
+from decouple import config
 
 def send_automail(to_email,subject,body):
     smtp_server = 'smtp.gmail.com'
     smtp_port = 587
     smtp_username = 'siuch.tech'
-    smtp_password = 'junqeambtfqmbimt'
+    smtp_password = config("GMAIL_PASSWORD")
 
     from_email = 'siuchtech@gmail.com'
 
