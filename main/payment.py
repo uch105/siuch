@@ -5,7 +5,7 @@ import requests
 
 def create_get_session(tran_id,pid,amount,name,email,phone):
 
-    settings = { 'store_id': config('STORE_ID'), 'store_pass': config('STORE_PASS'), 'issandbox': False }
+    settings = { 'store_id': config('LIVE_STORE_ID'), 'store_pass': config('LIVE_STORE_PASS'), 'issandbox': False }
     sslcz = SSLCOMMERZ(settings)
     post_body = {}
     post_body['total_amount'] = amount
