@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tanvir Ahmed Monon</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=GFS+Didot&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/portfolio/tanvirahmedmonon.css' %}">
+</head>
+<body>
+    <div class="container">
+        <div class="portfolio">
+            <div class="texts">
+                <div class="text1">Hello,</div>
+                <div class="text2">I'm Monon</div>
+                <p class="text3">Welcome to my portfolio, where my journey in Materials Science and Engineering reflects a passion for sustainable innovation and green nanotechnology. With experience in pioneering eco-friendly nanoparticle synthesis and advanced material characterization, I aim to align scientific progress with environmental responsibility. Join me in exploring how creative science can transform challenges into opportunities for a better world.</p>
+            </div>
+            <div class="image">
+                <img src="{% static 'portfolio/tanvirahmedmonon/profile.jpg' %}" alt="" id="pc">
+                <a href="{% static 'portfolio/tanvirahmedmonon/cv.pdf' %}" download>If you want my resume</a>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <a href="https://www.facebook.com/profile.php?id=100010064832217&mibextid=LQQJ4d" target="_blank"><img src="{% static 'portfolio/tanvirahmedmonon/fb.png' %}" alt=""></a>
+        <a onclick="navigator.clipboard.writeText('tanvirahmedmonon@gmail.com');" target="_blank"><img src="{% static 'portfolio/tanvirahmedmonon/email.png' %}" alt=""></a>
+        <a href="https://www.instagram.com/tanveer_monon?igsh=MWk5M2g1ZHlwbWlseg==" target="_blank"><img src="{% static 'portfolio/tanvirahmedmonon/insta.png' %}" alt=""></a>
+        <a href="https://www.linkedin.com/in/tanvir-ahmed-monon-693033319" target="_blank"><img src="{% static 'portfolio/tanvirahmedmonon/linkedin.png' %}" alt=""></a>
+    </footer>
+</body>
+</html>

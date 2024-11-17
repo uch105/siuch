@@ -28,4 +28,6 @@ else:
         path("checkout/ipn_listener/", views.ipn_listener, name="ipn_listener"),
         path("checkout/payment/<str:pk>/<str:pk2>/", views.create_a_payment, name="payment"),
         path("api/check_tran_id/<str:pk>/", views.check_tran_id, name="check_tran_id"),
+        #portfolio urls
+        path("portfolio/tanvir-ahmed-monon/", views.portfolio_tanvirahmedmonon, name="tanvirahmedmonon"),
     ]+ static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)

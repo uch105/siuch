@@ -266,3 +266,18 @@ def site_log(request):
         'logs': logs[:100],
     }
     return render(request,"main/site-log.html",context)
+
+
+
+
+
+
+
+
+# --------------------    portfolio   -------------------
+
+def portfolio(request):
+    return HttpResponse("Nothing goes here!")
+
+def portfolio_tanvirahmedmonon(request):
+    return render(request,"main/portfolio/tanvirahmedmonon.html")
