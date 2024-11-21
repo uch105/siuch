@@ -281,3 +281,6 @@ def portfolio(request):
 
 def portfolio_tanvirahmedmonon(request):
     return render(request,"main/portfolio/tanvirahmedmonon.html")
+
+def portfolio_uch(request):
+    return render(request,"main/portfolio/uch.html")

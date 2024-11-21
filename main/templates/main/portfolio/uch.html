@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tanvir Saklan</title>
+    <link rel="stylesheet" href="{% static 'css/portfolio/uch.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/default.min.css">
+</head>
+<body>
+    <div class="container">
+        <div class="landing">
+            <div class="card">
+                <div class="card1">
+                    <img src="{% static 'portfolio/uch/pp.jpg' %}" alt="">
+                </div>
+                <div class="card2">
+                    <h1 class="name">Tanvir Saklan</h1>
+                    <p class="designation">Materials Engineer | Web Developer</p>
+                    <div class="links">
+                        <div class="link">
+                            <img src="{% static 'portfolio/uch/phone.png' %}" alt="">
+                            <span>+8801635817747</span>
+                        </div>
+                        <div class="link">
+                            <img src="{% static 'portfolio/uch/emailuch.png' %}" alt="">
+                            <span>tanvirsaklan3660@gmail.com</span>
+                        </div>
+                        <div class="link">
+                            <img src="{% static 'portfolio/uch/location.png' %}" alt="">
+                            <span>Rangpur, Bangladesh</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="desc">
+                <p class="name"><span class="one">Hi, I'm</span><br><span class="two">Tanvir Saklan</span></p>
+                <p class="description">I am a Materials Science & Engineering graduate with expertise in nanotechnology, software engineering, and full-stack web development. Driven to innovate at the convergence of advanced materials, biomedical applications, and cutting-edge device technologies.</p>
+                <div class="cv">
+                    <a href="{% static 'portfolio/uch/cv.pdf' %}" downlaod>Download CV</a>
+                </div>
+                <div class="links">
+                    <div>Follow me : </div>
+                    <a href="https://www.facebook.com/share/1BkrNNGvqE/"><img src="{% static 'portfolio/uch/fb.png' %}" alt=""></a>
+                    <a href="https://www.instagram.com/uch.clicks/profilecard/?igsh=ZWVtNHM1cTg1bGdp"><img src="{% static 'portfolio/uch/insta.png' %}" alt=""></a>
+                    <a href="https://wa.me/qr/TBKTVRI5GJJYM1"><img src="{% static 'portfolio/uch/whatsapp.png' %}" alt=""></a>
+                    <a href="https://www.linkedin.com/in/uch105/"><img src="{% static 'portfolio/uch/linkedin.png' %}" alt=""></a>
+                    <a href="https://github.com/uch105/"><img src="{% static 'portfolio/uch/github.png' %}" alt=""></a>
+                    <a href="https://t.me/thegreatuch"><img src="{% static 'portfolio/uch/tg.png' %}" alt=""></a>
+                    <a href="https://x.com/uch_tweets?t=w4eKHv-W9XYxyJqFE1cHKw&s=09"><img src="{% static 'portfolio/uch/x.png' %}" alt=""></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container2">
+        <h1 class="title">I am connected to</h1>
+        <div class="connections">
+            <div class="connection">
+                <img src="{% static 'portfolio/uch/s_logo.png' %}" alt="">
+                <a href="https://siuchtechnologies.com/">SiUch Technologies</a>
+                <p>My own software firm that i founded with my friend. In this firm i create custom softwares for any company. I handle the technical side, create softwares, my friend handles the business sides. You may go check thoroughly.</p>
+            </div>
+            <div class="connection">
+                <img src="{% static 'portfolio/uch/m_logo.png' %}" alt="">
+                <a href="https://materialsscience.net/">Materials Science Hub</a>
+                <p>This is a online forum for all students that are pursuing or interested in the study of Materials Science & Engineering or related fields. I built this system along with the guidance of its Founder and my fellow friends and juniors.</p>
+            </div>
+            <div class="connection">
+                <img src="{% static 'portfolio/uch/d_logo.png' %}" alt="">
+                <a href="https://prescribemate.com/">Doctors'</a>
+                <p>Doctors’ is an online platform for Bangladeshi doctors aiming to provide them a software which includes a digital prescription tool, drugs information, a discussion forum to boost their productivity.</p>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="vsm">
+            <h1 class="title">Data Visualisation: VSM</h1>
+            <p>A VSM (Vibrating Sample Magnetometer) machine provides data with a .ASC extension file format, which is a bit confusing to handle. This simple piece of code converts the .ASC file to graphical view as png file. It becomes more handy when you are working with multiple samples and need to compare them. Check out my git repository.</p>
+            <div class="images">
+                <pre>
+                    <code class="language-python">
+import matplotlib.pyplot as plt
+import csv
+
+with open('you_file_name.ASC', 'r') as asc_file, open('target_file_name.csv', 'w', newline='') as csv_file:
+csv_writer = csv.writer(csv_file)
+
+for line in asc_file:
+    numbers = line.strip().split(',')
+    csv_writer.writerow([float(numbers[0]), float(numbers[1])])
+
+x_data = []
+y_data = []
+
+with open('target_file_name.csv', 'r') as csv_file:
+    csv_reader = csv.reader(csv_file)
+    for row in csv_reader:
+        x_data.append(float(row[0]))
+        y_data.append(float(row[1]))
+
+plt.figure(figsize=(8, 8))
+plt.plot(x_data, y_data, marker='.', linestyle='-', color='b')
+
+plt.xlabel('Magnetic Field (Oe)')
+plt.ylabel('Magnetization (emu/gm)')
+plt.title('VSM Data Visualization')
+
+plt.axhline(0, color='black',linewidth=0.5)
+plt.axvline(0, color='black',linewidth=0.5)
+plt.grid(True)
+
+plt.savefig('vsm.jpg', format='jpg', dpi=300)
+                        
+                    </code>
+                </pre>
+                <img src="{% static 'portfolio/uch/vsm.jpg' %}" alt="">
+            </div>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+</body>
+</html>

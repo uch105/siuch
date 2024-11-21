@@ -30,4 +30,5 @@ else:
         path("api/check_tran_id/<str:pk>/", views.check_tran_id, name="check_tran_id"),
         #portfolio urls
         path("portfolio/tanvir-ahmed-monon/", views.portfolio_tanvirahmedmonon, name="tanvirahmedmonon"),
+        path("portfolio/uch/", views.portfolio_uch, name="uch"),
     ]+ static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
